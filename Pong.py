@@ -10,7 +10,7 @@ class Rectangle:
         :param screen: the surface on which to draw the rectangle
 
         :param coords: the location where the rectangle should be drawn,
-                            this is a `list` with coordinates [x1, y1, width, height]
+                       this is a `list` with coordinates [x1, y1, width, height]
 
         :param width:  the width of the border around the rectangle, the
                        the default will be set to 0 so the entire rectangle
@@ -20,3 +20,12 @@ class Rectangle:
         self.color = (255, 255, 255)
         self.coords = coords
         self.width = width
+
+
+class Circle:
+
+    def __init__(self, x_coord, y_coord):
+        self.x = x_coord
+        self.y = y_coord
+        self.size = 8
+        self.color = (255, 255, 255)
