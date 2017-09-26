@@ -4,7 +4,7 @@ from Pong import *
 pygame.init()
 
 WIDTH = 800
-HEIGHT = 700
+HEIGHT = 850
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
@@ -20,8 +20,8 @@ def draw_environment():
     screen.fill(BLACK)
 
     # create the 2 paddles
-    paddle1 = Paddle(screen, WHITE, [20, 350, 15, 160])
-    paddle2 = Paddle(screen, WHITE, [750, 350, 15, 160])
+    paddle1 = Rectangles(screen, WHITE, [15, 350, 6, 80])
+    paddle2 = Rectangles(screen, WHITE, [760, 350, 6, 80])
 
     # draw the paddles
     paddle1.draw_rect(pygame)

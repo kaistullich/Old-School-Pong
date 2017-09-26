@@ -1,4 +1,4 @@
-class Paddle:
+class Rectangles:
     """
     Class for creating the Paddles inside of the Pong game.
     """
@@ -13,7 +13,7 @@ class Paddle:
                        RGB color. ( i.e. BLUE = (0, 0, 255) )
 
         :param rect:   the location where the rectangle should be drawn,
-                       this is a `list` with coordinates [x1, y1, x2, y2]
+                       this is a `list` with coordinates [x1, y1, width, height]
 
         :param width:  the width of the border around the rectangle, the
                        the default will be set to 0 so the entire rectangle
@@ -23,6 +23,7 @@ class Paddle:
         self.color = color
         self.rect = rect
         self.width = width
+        self.game = None
 
     def draw_rect(self, game):
         """
