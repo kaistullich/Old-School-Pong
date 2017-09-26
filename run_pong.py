@@ -18,11 +18,10 @@ def draw_environment(dividers):
     # black background
     screen.fill(BLACK)
 
-    # create the 2 paddles
+    # create and draw the 2 paddles
+    # TODO: figure out how to make the paddles move with up arrows
     paddle1 = Rectangle(screen, coords=[30, 350, 13, 70])
-    paddle2 = Rectangle(screen, [757, 350, 13, 70])
-
-    # draw the paddles
+    paddle2 = Rectangle(screen, coords=[757, 350, 13, 70])
     pygame.draw.rect(screen, paddle1.color, paddle1.coords)
     pygame.draw.rect(screen, paddle2.color, paddle2.coords)
 
@@ -37,9 +36,9 @@ def draw_environment(dividers):
         # draw divider rectangles
         pygame.draw.rect(screen, rectangle.color, rectangle.coordinates)
 
-    # create the ball obj
+    # create and draw the ball obj
+    # TODO: figure out how to make the ball move, and make ball bounce off walls
     ball = Circle(200, 200)
-    # draw ball
     pygame.draw.circle(screen, WHITE, [ball.x, ball.y], ball.size)
 
     # display
