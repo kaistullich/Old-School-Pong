@@ -13,6 +13,11 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Old School Pong")
 clock = pygame.time.Clock()
 
+# useful information for walls later on
+info = pygame.display.Info()
+swidth = info.current_w
+sheight = info.current_h
+
 
 def draw_environment(dividers):
     # black background
