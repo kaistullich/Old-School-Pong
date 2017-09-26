@@ -26,18 +26,21 @@ def draw_environment(dividers):
     pygame.draw.rect(screen, paddle1.color, paddle1.coords)
     pygame.draw.rect(screen, paddle2.color, paddle2.coords)
 
-    # 30 pixel spacing between each divider
-    spacing = 30
-    # starting y-coordinate
+    # starting y-coordinate for dividers
     y_cord = 0
     # loop through each new Rectangle object
     for rectangle in dividers:
         # create coordinates for each rectangle
         rectangle.coordinates = [400, y_cord, 6, 20]
         # add spacing to the next y-coordinate
-        y_cord += spacing
+        y_cord += 30
         # draw divider rectangles
         pygame.draw.rect(screen, rectangle.color, rectangle.coordinates)
+
+    # create the ball obj
+    ball = Circle(200, 200)
+    # draw ball
+    pygame.draw.circle(screen, WHITE, [ball.x, ball.y], ball.size)
 
     # display
     pygame.display.update()
