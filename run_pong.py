@@ -3,11 +3,14 @@ from Pong import *
 
 pygame.init()
 
+# Constants
 WIDTH = 800
 HEIGHT = 850
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 NUMBER_OF_DIVIDERS = 30
+RIGHT_X_START = 30
+LEFT_X_START = 757
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Old School Pong")
@@ -19,30 +22,27 @@ swidth = info.current_w
 sheight = info.current_h
 
 
-def draw_environment(dividers, y_loc):
+def draw_environment(dividers, left_y, right_y):
     # black background
     screen.fill(BLACK)
 
     # create and draw the 2 paddles
-    # TODO: figure out how to make the paddles move with up arrows
-    paddle1 = Rectangle(screen, coords=[30, y_loc, 13, 70])
-    paddle2 = Rectangle(screen, coords=[757, y_loc, 13, 70])
-    pygame.draw.rect(screen, paddle1.color, paddle1.coords)
-    pygame.draw.rect(screen, paddle2.color, paddle2.coords)
+    left_paddle = Rectangle(screen, coords=[RIGHT_X_START, left_y, 13, 70])
+    right_paddle = Rectangle(screen, coords=[LEFT_X_START, right_y, 13, 70])
+    pygame.draw.rect(screen, left_paddle.color, left_paddle.coords)
+    pygame.draw.rect(screen, right_paddle.color, right_paddle.coords)
 
-    # starting y-coordinate for dividers
-    y_cord = 0
+    # starting y-coord for dividers
+    div_y_cord = 0
     # loop through each new Rectangle object
     for rectangle in dividers:
-        # create coordinates for each rectangle
-        rectangle.coordinates = [400, y_cord, 6, 20]
+        rectangle.coordinates = [400, div_y_cord, 6, 20]
         # add spacing to the next y-coordinate
-        y_cord += 30
-        # draw divider rectangles
+        div_y_cord += 30
         pygame.draw.rect(screen, rectangle.color, rectangle.coordinates)
 
     # create and draw the ball obj
-    # TODO: figure out how to make the ball move, and make ball bounce off walls
+    # TODO: make ball move and bounce off the walls
     ball = Circle(200, 200)
     pygame.draw.circle(screen, WHITE, [ball.x, ball.y], ball.size)
 
@@ -56,33 +56,68 @@ def main():
     # create 30 rectangles for the dividers
     dividers = [Rectangle(screen) for i in range(NUMBER_OF_DIVIDERS)]
 
-    y_move = int(HEIGHT / 2)
+    # vertical speed
+    left_paddle_y_speed = 0
+    right_paddle_y_speed = 0
+
+    # Current position
+    left_paddle_y_coord = 10
+    right_paddle_y_coord = 10
 
     while True:
         for event in pygame.event.get():
             # all keys
             keys = pygame.key.get_pressed()
-
             # quit game
             if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
                 pygame.quit()
                 quit()
 
-            # check key presses
+            # check key down presses
             elif event.type == pygame.KEYDOWN:
-                # TODO: adjust the paddles to go up/down with key presses
-                if keys[pygame.K_a]:
-                    print("Left Paddle 'A' pressed")
                 if keys[pygame.K_q]:
-                    print("Left Paddle 'Q' pressed")
+                    # print(f'LEFT paddle x-coord: {left_paddle.coords[0]}')
+                    # print(f'LEFT paddle y-coord: {left_paddle.coords[1]}')
+                    left_paddle_y_speed = -30
+                if keys[pygame.K_a]:
+                    # print(f'LEFT paddle x-coord: {left_paddle.coords[0]}')
+                    # print(f'LEFT paddle y-coord: {left_paddle.coords[1]}')
+                    left_paddle_y_speed = 30
                 if keys[pygame.K_p]:
-                    print("Right paddle 'P' pressed")
+                    # print(f'RIGHT paddle x-coord: {right_paddle.coords[0]}')
+                    # print(f'RIGHT paddle y-coord: {right_paddle.coords[1]}')
+                    right_paddle_y_speed = -30
                 if keys[pygame.K_l]:
-                    print("Right paddle 'L' pressed")
+                    # print(f'RIGHT paddle x-coord: {right_paddle.coords[0]}')
+                    # print(f'RIGHT paddle y-coord: {right_paddle.coords[1]}')
+                    right_paddle_y_speed = 30
 
-        draw_environment(dividers, y_move)
-        y_move += 50
-        clock.tick(60)
+            # user let up on a key
+            elif event.type == pygame.KEYUP:
+                # If it is either [Q, A, P, L] reset speed vector back to zero
+                if event.key == pygame.K_q or event.key == pygame.K_a:
+                    left_paddle_y_speed = 0
+                elif event.key == pygame.K_p or event.key == pygame.K_l:
+                    right_paddle_y_speed = 0
+
+        # move the paddles according to the speed vector.
+        left_paddle_y_coord += left_paddle_y_speed
+        right_paddle_y_coord += right_paddle_y_speed
+
+        # call the drawing environment
+        draw_environment(dividers, left_paddle_y_coord, right_paddle_y_coord)
+
+        # FIXME: check the height of each paddle to see if it reached bottom/top
+        # if left_paddle.coords[1] == HEIGHT:
+        #     left_paddle_y_coord = HEIGHT
+        # if left_paddle.coords[1] == 10:
+        #     left_paddle_y_coord = 0
+        # if right_paddle.coords[1] == HEIGHT:
+        #     right_paddle_y_coord = HEIGHT
+        # if right_paddle.coords[1] == 10:
+        #     right_paddle_y_coord = 0
+
+        clock.tick(120)
 
 
 if __name__ == '__main__':
