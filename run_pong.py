@@ -28,10 +28,10 @@ def draw_environment(dividers, left_y, right_y):
     screen.fill(BLACK)
 
     # create and draw the 2 paddles
-    left_paddle = Rectangle(screen, coords=[RIGHT_X_START, left_y, 13, 70])
-    right_paddle = Rectangle(screen, coords=[LEFT_X_START, right_y, 13, 70])
-    pygame.draw.rect(screen, left_paddle.color, left_paddle.coords)
-    pygame.draw.rect(screen, right_paddle.color, right_paddle.coords)
+    left_paddle = Rectangle(screen=screen, x=RIGHT_X_START, y=left_y, w=13, h=70)
+    right_paddle = Rectangle(screen=screen, x=LEFT_X_START, y=right_y, w=13, h=70)
+    pygame.draw.rect(screen, left_paddle.color, [left_paddle.x, left_paddle.y, left_paddle.w, left_paddle.h])
+    pygame.draw.rect(screen, right_paddle.color, [right_paddle.x, right_paddle.y, right_paddle.w, right_paddle.h])
 
     # starting y-coord for dividers
     div_y_cord = 0
@@ -53,7 +53,7 @@ def draw_environment(dividers, left_y, right_y):
 
 def main():
     # create 30 rectangles for the dividers
-    dividers = [Rectangle(screen) for i in range(NUMBER_OF_DIVIDERS)]
+    dividers = [Rectangle(screen, 0, 0, 0, 0) for i in range(NUMBER_OF_DIVIDERS)]
 
     # vertical speed
     left_paddle_y_speed = 0
