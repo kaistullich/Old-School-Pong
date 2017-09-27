@@ -1,9 +1,12 @@
 class Rectangle:
 
-    def __init__(self, screen, coords=None, width=0):
+    def __init__(self, screen, x, y, w, h, width=0):
         self.screen = screen
         self.color = (255, 255, 255)
-        self.coords = coords
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
         self.width = width
 
 
