@@ -12,11 +12,12 @@ NUMBER_OF_DIVIDERS = 30
 RIGHT_X_START = 30
 LEFT_X_START = 757
 
+# window setup
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Old School Pong")
 clock = pygame.time.Clock()
 
-# useful information for walls later on
+# TODO: possibly use this information for walls later on
 info = pygame.display.Info()
 swidth = info.current_w
 sheight = info.current_h
@@ -51,8 +52,6 @@ def draw_environment(dividers, left_y, right_y):
 
 
 def main():
-    """ Main function for starting the pygame surface """
-
     # create 30 rectangles for the dividers
     dividers = [Rectangle(screen) for i in range(NUMBER_OF_DIVIDERS)]
 
