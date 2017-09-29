@@ -1,5 +1,23 @@
 import pygame
-from Pong import *
+
+
+class Rectangle:
+
+    def __init__(self, screen, coords=None, width=0):
+        self.screen = screen
+        self.color = (255, 255, 255)
+        self.coords = coords
+        self.width = width
+
+
+class Circle:
+
+    def __init__(self, x_coord, y_coord):
+        self.x = x_coord
+        self.y = y_coord
+        self.size = 8
+        self.color = (255, 255, 255)
+
 
 pygame.init()
 
@@ -28,10 +46,10 @@ def draw_environment(dividers, left_y, right_y):
     screen.fill(BLACK)
 
     # create and draw the 2 paddles
-    left_paddle = Rectangle(screen=screen, x=RIGHT_X_START, y=left_y, w=13, h=70)
-    right_paddle = Rectangle(screen=screen, x=LEFT_X_START, y=right_y, w=13, h=70)
-    pygame.draw.rect(screen, left_paddle.color, [left_paddle.x, left_paddle.y, left_paddle.w, left_paddle.h])
-    pygame.draw.rect(screen, right_paddle.color, [right_paddle.x, right_paddle.y, right_paddle.w, right_paddle.h])
+    left_paddle = Rectangle(screen, coords=[RIGHT_X_START, left_y, 13, 70])
+    right_paddle = Rectangle(screen, coords=[LEFT_X_START, right_y, 13, 70])
+    pygame.draw.rect(screen, left_paddle.color, left_paddle.coords)
+    pygame.draw.rect(screen, right_paddle.color, right_paddle.coords)
 
     # starting y-coord for dividers
     div_y_cord = 0
@@ -53,7 +71,7 @@ def draw_environment(dividers, left_y, right_y):
 
 def main():
     # create 30 rectangles for the dividers
-    dividers = [Rectangle(screen, 0, 0, 0, 0) for i in range(NUMBER_OF_DIVIDERS)]
+    dividers = [Rectangle(screen) for i in range(NUMBER_OF_DIVIDERS)]
 
     # vertical speed
     left_paddle_y_speed = 0
