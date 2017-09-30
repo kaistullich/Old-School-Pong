@@ -51,6 +51,8 @@ def main():
     p_down = False
     l_down = False
 
+    yspeed = 25
+
     while True:
         for event in pygame.event.get():
             # all keys
@@ -87,14 +89,14 @@ def main():
         # FIXME: maybe there is a more OOP approach to this?
         # left paddle
         if q_down:
-            left.move(-10)
+            left.move(-yspeed)
         if a_down:
-            left.move(10)
+            left.move(yspeed)
         # right paddle
         if p_down:
-            right.move(-10)
+            right.move(-yspeed)
         if l_down:
-            right.move(10)
+            right.move(yspeed)
 
         # check to stop paddles from moving (key NOT held down)
         # FIXME: maybe there is a more OOP approach to this?
