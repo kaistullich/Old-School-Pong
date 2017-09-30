@@ -5,16 +5,16 @@ class Paddle:
 
     def __init__(self, screen, window_h, window_w, left_paddle):
         self.screen = screen
-        self.width = window_w
         self.y = window_h / 2
         self.pad_width = 10
         self.pad_height = 70
+        self.window_w = window_w
         self.window_h = window_h
 
         if left_paddle:
             self.x = self.pad_width / 2
         else:
-            self.x = self.width - self.pad_width * 1.5
+            self.x = self.window_w - (self.pad_width * 1.5)
 
     def show(self):
         WHITE = (255, 255, 255)
