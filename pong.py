@@ -45,6 +45,12 @@ def draw():
 
 
 def main():
+    # flags for key press events
+    q_down = False
+    a_down = False
+    p_down = False
+    l_down = False
+
     while True:
         for event in pygame.event.get():
             # all keys
@@ -57,23 +63,47 @@ def main():
             # check key down presses
             elif event.type == pygame.KEYDOWN:
                 # left paddle
-                if keys[pygame.K_q]:
-                    left.move(-30)
-                if keys[pygame.K_a]:
-                    left.move(30)
+                if event.key == pygame.K_q:
+                    q_down = True
+                elif event.key == pygame.K_a:
+                    a_down = True
 
                 # right paddle
-                if keys[pygame.K_p]:
-                    right.move(-30)
-                if keys[pygame.K_l]:
-                    right.move(30)
+                elif event.key == pygame.K_p:
+                    p_down = True
+                elif event.key == pygame.K_l:
+                    l_down = True
 
             # user let up on a key
             elif event.type == pygame.KEYUP:
-                if event.key == keys[pygame.K_q] or event.key == keys[pygame.K_a]:
-                    left.move(0)
+                if event.key == pygame.K_q or event.key == pygame.K_a:
+                    q_down = False
+                    a_down = False
                 elif event.key == pygame.K_p or event.key == pygame.K_l:
-                    right.move(0)
+                    p_down = False
+                    l_down = False
+
+        # check if paddles should be moving up/down (key held down)
+        # FIXME: maybe there is a more OOP approach to this?
+        # left paddle
+        if q_down:
+            left.move(-10)
+        if a_down:
+            left.move(10)
+        # right paddle
+        if p_down:
+            right.move(-10)
+        if l_down:
+            right.move(10)
+
+        # check to stop paddles from moving (key NOT held down)
+        # FIXME: maybe there is a more OOP approach to this?
+        # left paddle
+        if not q_down or not a_down:
+            left.move(0)
+        # right paddle
+        if not p_down or not l_down:
+            right.move(0)
 
         # call animation function
         draw()
