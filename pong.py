@@ -1,6 +1,7 @@
 import pygame
-from puck import Puck
+
 from paddle import Paddle
+from puck import Puck
 
 pygame.init()
 
@@ -45,9 +46,9 @@ def draw():
 
 def main():
     while True:
-        # all keys
-        keys = pygame.key.get_pressed()
         for event in pygame.event.get():
+            # all keys
+            keys = pygame.key.get_pressed()
             # quit game
             if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
                 pygame.quit()
@@ -56,22 +57,22 @@ def main():
             # check key down presses
             elif event.type == pygame.KEYDOWN:
                 # left paddle
+                if keys[pygame.K_q]:
+                    left.move(-30)
                 if keys[pygame.K_a]:
-                    left.move(-50)
-                if keys[pygame.K_z]:
-                    left.move(50)
+                    left.move(30)
 
                 # right paddle
-                if keys[pygame.K_j]:
-                    right.move(-50)
-                if keys[pygame.K_m]:
-                    right.move(50)
+                if keys[pygame.K_p]:
+                    right.move(-30)
+                if keys[pygame.K_l]:
+                    right.move(30)
 
             # user let up on a key
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_z or event.key == pygame.K_a:
+                if event.key == keys[pygame.K_q] or event.key == keys[pygame.K_a]:
                     left.move(0)
-                elif event.key == pygame.K_j or event.key == pygame.K_m:
+                elif event.key == pygame.K_p or event.key == pygame.K_l:
                     right.move(0)
 
         # call animation function
