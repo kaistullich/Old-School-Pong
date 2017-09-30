@@ -10,6 +10,8 @@ WIDTH = 600
 HEIGHT = 400
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
 
 # window setup
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -21,8 +23,8 @@ clock = pygame.time.Clock()
 puck = Puck(WIDTH, HEIGHT, screen)
 
 # create 2 paddles
-left = Paddle(screen, HEIGHT, WIDTH, True)
-right = Paddle(screen, HEIGHT, WIDTH, False)
+left = Paddle(screen, HEIGHT, WIDTH, RED, True)
+right = Paddle(screen, HEIGHT, WIDTH, GREEN, False)
 
 
 def draw():

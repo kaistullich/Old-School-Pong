@@ -35,7 +35,6 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Old School Pong")
 clock = pygame.time.Clock()
 
-# TODO: possibly use this information for walls later on
 info = pygame.display.Info()
 swidth = info.current_w
 sheight = info.current_h
@@ -61,7 +60,6 @@ def draw_environment(dividers, left_y, right_y):
         pygame.draw.rect(screen, rectangle.color, rectangle.coordinates)
 
     # create and draw the ball obj
-    # TODO: make ball move and bounce off the walls
     ball = Circle(200, 200)
     pygame.draw.circle(screen, WHITE, [ball.x, ball.y], ball.size)
 
@@ -116,7 +114,6 @@ def main():
         # call the drawing environment
         draw_environment(dividers, left_paddle_y_coord, right_paddle_y_coord)
 
-        # FIXME: check the height of each paddle to see if it reached bottom/top
         # if left_paddle.coords[1] == HEIGHT:
         #     left_paddle_y_coord = HEIGHT
         # if left_paddle.coords[1] == 10:
