@@ -93,20 +93,12 @@ def main():
             # check key down presses
             elif event.type == pygame.KEYDOWN:
                 if keys[pygame.K_q]:
-                    # print(f'LEFT paddle x-coord: {left_paddle.coords[0]}')
-                    # print(f'LEFT paddle y-coord: {left_paddle.coords[1]}')
                     left_paddle_y_speed = -30
                 if keys[pygame.K_a]:
-                    # print(f'LEFT paddle x-coord: {left_paddle.coords[0]}')
-                    # print(f'LEFT paddle y-coord: {left_paddle.coords[1]}')
                     left_paddle_y_speed = 30
                 if keys[pygame.K_p]:
-                    # print(f'RIGHT paddle x-coord: {right_paddle.coords[0]}')
-                    # print(f'RIGHT paddle y-coord: {right_paddle.coords[1]}')
                     right_paddle_y_speed = -30
                 if keys[pygame.K_l]:
-                    # print(f'RIGHT paddle x-coord: {right_paddle.coords[0]}')
-                    # print(f'RIGHT paddle y-coord: {right_paddle.coords[1]}')
                     right_paddle_y_speed = 30
 
             # user let up on a key
