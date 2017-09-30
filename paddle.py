@@ -3,14 +3,15 @@ import pygame
 
 class Paddle:
 
-    def __init__(self, screen, h, w, left):
+    def __init__(self, screen, window_h, window_w, left_paddle):
         self.screen = screen
-        self.width = w
-        self.y = h / 2
+        self.width = window_w
+        self.y = window_h / 2
         self.pad_width = 10
         self.pad_height = 70
+        self.window_h = window_h
 
-        if left:
+        if left_paddle:
             self.x = self.pad_width / 2
         else:
             self.x = self.width - self.pad_width * 1.5
@@ -18,9 +19,12 @@ class Paddle:
     def show(self):
         WHITE = (255, 255, 255)
         rect = pygame.Rect(self.x, self.y, self.pad_width, self.pad_height)
-        # FIXME: this clamp does not function properly
-        # rect.clamp_ip(self.screen.get_rect())
         pygame.draw.rect(self.screen, WHITE, rect)
 
     def move(self, speed):
         self.y += speed
+        # check if the paddle is off screen
+        if self.y < 0:
+            self.y = 0
+        if self.y > self.window_h - self.pad_height:
+            self.y = self.window_h - self.pad_height
