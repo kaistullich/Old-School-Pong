@@ -1,4 +1,5 @@
 import pygame
+import math
 
 
 class Puck:
@@ -7,13 +8,23 @@ class Puck:
         self.height = h
         self.x = w / 2
         self.y = h / 2
-        self.xspeed = 1
-        self.yspeed = 3
+        self.xspeed = 5
+        self.yspeed = 1
+        self.r = 12
         self.screen = screen
+        self.reset()
+
+    def checkPaddleLeft(self, p):
+        if self.y - self.r < p.y + p.pad_height / 2 and self.y + self.r > p.y - p.pad_height / 2 and self.x - self.r < p.x + p.pad_width / 2:
+            if self.x > p.x:
+                diff = self.y - (p.y - p.pad_height / 2)
+                rad = math.radians(45)
+                # TODO: Continue here
+                angle = map()
 
     def show(self):
         WHITE = (255, 255, 255)
-        pygame.draw.ellipse(self.screen, WHITE, (self.x, self.y, 24, 24))
+        pygame.draw.ellipse(self.screen, WHITE, (self.x, self.y, self.r * 2, self.r * 2))
 
     def update(self):
         self.x += self.xspeed
