@@ -8,17 +8,18 @@ class Paddle:
         self.width = w
         self.y = h / 2
         self.pad_width = 10
-        self.pad_height = 100
+        self.pad_height = 70
 
         if left:
             self.x = self.pad_width / 2
         else:
-            self.x = self.width + self.pad_width * 2
+            self.x = self.width - self.pad_width * 1.5
 
     def show(self):
         WHITE = (255, 255, 255)
         rect = pygame.Rect(self.x, self.y, self.pad_width, self.pad_height)
-        rect.clamp_ip(self.screen.get_rect())
+        # FIXME: this clamp does not function properly
+        # rect.clamp_ip(self.screen.get_rect())
         pygame.draw.rect(self.screen, WHITE, rect)
 
     def move(self, speed):
