@@ -7,7 +7,7 @@ pygame.init()
 
 # Constants
 WIDTH = 600
-HEIGHT = 400
+HEIGHT = 480
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -31,6 +31,9 @@ def draw():
     # black background
     screen.fill(BLACK)
 
+    # puck.checkPaddle(left)
+    puck.checkPaddleLeft(right)
+
     # show the 2 paddles on window
     left.show()
     right.show()
@@ -53,7 +56,7 @@ def main():
     p_down = False
     l_down = False
 
-    yspeed = 25
+    yspeed = 18
 
     while True:
         for event in pygame.event.get():
@@ -113,7 +116,7 @@ def main():
         draw()
 
         # FPS
-        clock.tick(120)
+        clock.tick(50)
 
 
 if __name__ == '__main__':
