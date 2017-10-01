@@ -31,9 +31,6 @@ def draw():
     # black background
     screen.fill(BLACK)
 
-    # puck.checkPaddle(left)
-    puck.checkPaddleLeft(right)
-
     # show the 2 paddles on window
     left.show()
     right.show()
@@ -44,6 +41,10 @@ def draw():
     # show and restrict edges for puck
     puck.edges()
     puck.show()
+
+    # check for collision
+    puck.collide(left)
+    puck.collide(right)
 
     # display
     pygame.display.update()
@@ -56,6 +57,7 @@ def main():
     p_down = False
     l_down = False
 
+    # speed for paddle up/down movement
     yspeed = 18
 
     while True:
