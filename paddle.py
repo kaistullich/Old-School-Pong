@@ -21,6 +21,8 @@ class Paddle:
         rect = pygame.Rect(self.x, self.y, self.pad_width, self.pad_height)
         pygame.draw.rect(self.screen, self.color, rect)
 
+        return rect
+
     def move(self, speed):
         self.y += speed
         # check if the paddle is off screen
